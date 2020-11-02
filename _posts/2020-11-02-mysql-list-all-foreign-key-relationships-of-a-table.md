@@ -4,7 +4,7 @@ title: MySQL - List all foreign key relationships referencing to a particular ta
 date: 2020-11-02 19:08 +0530
 ---
 
-You have a table and you want to see all the other tables which hae the foreign key constraints pointing to that table, or to a particular column in that table.
+You have a table and you want to see all the other tables which have the foreign key constraints pointing to that table, or to a particular column in that table.
 
 **To see foreign key  relationships of a table:**
 ```sql

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL - How to list all foreign key relationships referencing to a particular table?
+title: MySQL - List all foreign key relationships referencing to a particular table?
 date: 2020-11-02 19:08 +0530
 ---
 
@@ -20,6 +20,7 @@ WHERE
 	REFERENCED_TABLE_SCHEMA = 'db_name'
     AND	REFERENCED_TABLE_NAME = 'table_name';
 ```
+
 
 **To see foreign key relationships of a column:**
 ```sql

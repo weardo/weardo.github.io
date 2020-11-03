@@ -46,7 +46,7 @@ job_count = np.sum([digit*(10**exponent) for digit, exponent in
 print (job_count)
 ```
 **Output:**
-```python
+```
 Search yielded 10,193 hits.
 10193
 ```
@@ -104,6 +104,98 @@ with open('scraped_links.pkl', 'rb') as f:
 skill_set = {'mapreduce': 0, 'spark': 0}
 
 ## write initialization into a file, so we can restart later
-#with open('scraped_links_restart.pkl', 'wb') as f:
-#    cPickle.dump((skill_set, 0),f)    
+with open('scraped_links_restart.pkl', 'wb') as f:
+   cPickle.dump((skill_set, 0),f)    
 ```
+
+Load the pickled links to continue scraping.
+=========================
+```python
+# This code below does the trick, but could be optimized for speed if necessary
+# e.g. skills are typically listed at the end of the webpage
+# might not need to split/join the whole webpage, as we already know
+# which words we are looking for 
+# and could stop after the first occurance of each word
+
+with open('scraped_links_restart.pkl', 'rb') as f:
+    skill_set, index = cPickle.load(f)
+    print ("How many websites still to go? ", len(job_links) - index)
+```
+**Output:**
+```
+How many websites still to go?  140
+```
+```python
+counter = 0
+
+for link in job_links[index:]:
+    counter +=1  
+    print(link)
+    try:
+        html_page = urllib2.request.urlopen(link).read().decode('utf-8')
+    except urllib2.error.HTTPError:
+        print ("HTTPError:")
+        continue
+    except urllib2.error.URLError:
+        print ("URLError:")
+        continue
+    except socket.error as error:
+        print ("Connection closed")
+        continue
+    
+    
+    html_text = re.sub("[^a-z.+3]"," ", html_page.lower()) # replace all but the listed characters
+        
+    for key in skill_set.keys():
+        if key in html_text:  
+            skill_set[key] +=1
+            
+    if counter % 5 == 0:
+        print (len(job_links) - counter - index)
+        print (skill_set)
+        with open('scraped_links_restart.pkl','wb') as f:
+            cPickle.dump((skill_set, index+counter),f)
+```
+**Output**
+```
+http://www.indeed.com/rc/clk?jk=22d70948c72621b5
+http://www.indeed.com/rc/clk?jk=fc24628e0b434a5a
+http://www.indeed.com/rc/clk?jk=23f087c8f24a97c0
+HTTPError:
+http://www.indeed.com/rc/clk?jk=3d80239809596f2c
+http://www.indeed.com/rc/clk?jk=23ebb206eca72f54
+135
+{'mapreduce': 0, 'spark': 0}
+http://www.indeed.com/rc/clk?jk=b28ac2ad86a2620c
+.........
+45
+{'mapreduce': 0, 'spark': 21}
+http://www.indeed.com/rc/clk?jk=8769d3b601a5d009
+http://www.indeed.com/rc/clk?jk=17a98fda0978f458
+HTTPError:
+http://www.indeed.com/rc/clk?jk=5e4c8179efd94fc2
+http://www.indeed.com/rc/clk?jk=95368911fea627e3
+http://www.indeed.com/rc/clk?jk=5d5115c6c551d55a
+```
+```python
+print (skill_set)
+```
+**Output**
+```
+{'mapreduce': 0, 'spark': 23}
+```
+```python
+pseries = pd.Series(skill_set)
+# pseries.sort(ascending=False)
+
+pseries.plot(kind = 'bar')
+## set the title to Score Comparison
+plt.title('Data Science Skills')
+plt.xlabel('Skills')
+plt.ylabel('Count')
+plt.show()
+```
+![Output](/assets/img/data_science_skills_bar_plot.png)
+
+Looks like nobody wants mapreduce!!
+===================================

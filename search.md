@@ -1,6 +1,6 @@
 ---
 layout: page
-title: search.md
+title: Search
 permalink: /search/
 ---
 

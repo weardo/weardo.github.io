@@ -57,3 +57,44 @@ defaults:
       path: "assets/img"
     values:
       image: true
+
+  - scope:
+      path: "assets/pdf"
+    values:
+      pdf: true
+  - scope:
+      path: "assets/pdf/books"
+    values:
+      book: true
+  - scope:
+      path: "assets/pdf/books/aspergers"
+    values:
+      book: true
+      aspergers: true
+  - scope:
+      path: "assets/pdf/books/business"
+    values:
+      book: true
+      business: true
+  - scope:
+      path: "assets/pdf/books/life"
+    values:
+      book: true
+      life: true
+  - scope:
+      path: "assets/pdf/books/music"
+    values:
+      book: true
+      music: true
+  - scope:
+      path: "assets/pdf/books/programming"
+    values:
+      book: true
+      programming: true
+  - scope:
+      path: "assets/pdf/books/skills"
+    values:
+      book: true
+      skills: true
+
+

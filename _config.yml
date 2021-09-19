@@ -36,8 +36,8 @@ typewrite-text: Hello Wrld
 author_work_experiences:
             - company_name: Yocket
               company_logo: yocket.png
-              company_url: yocket.com
-              designation: Web Develoer
+              company_url: https://yocket.com
+              designation: Web Developer
               description: Worked on Databases
               visibility: true
 
@@ -45,7 +45,7 @@ author_work_experiences:
 author_education_details:
               - college_logo: mumbai-university.png
                 college_name: KC College, Churchgate
-                college_url: kccollege.edu.in
+                college_url: https://kccollege.edu.in
                 college_degree: BScIT
                 description: Bachelor of Information Technology
                 visibility: true

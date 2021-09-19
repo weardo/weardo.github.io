@@ -123,7 +123,7 @@ For eg, In 2020-10-24-demo-article.md
 ---
 layout: post
 title: "Demo Article"
-author: janedoe
+author: abhishek
 ---
 This is Jane Doe's Article
 ```

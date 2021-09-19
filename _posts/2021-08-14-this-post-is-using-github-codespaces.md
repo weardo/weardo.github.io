@@ -1,6 +1,6 @@
 ---
 layout: post
-author: xplor4r
+author: abhishek
 title: Using Github Codespaces with Devlopr
 date: 2021-08-14T11:14:20.613Z
 thumbnail: /assets/img/posts/hello.jpg

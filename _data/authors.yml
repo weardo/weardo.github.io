@@ -30,11 +30,11 @@ johndoe:
       - title: "flickr"
         url: "https://flickr.com/johndoe"
 
-xplor4r:
+abhishek:
    name: Sujay kundu
-   username: xplor4r
+   username: abhishek
    site: https://sujaykundu.com
-   avatar: xplor4r.png
+   avatar: abhishek.png
    bio: "Full Stack Web Developer, based in Bangalore, India"
    email: mail@sujaykundu.com
    social:
